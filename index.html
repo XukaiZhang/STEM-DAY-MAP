@@ -97,29 +97,20 @@ main{flex:1;padding:10px 16px;min-height:0;display:flex;flex-direction:column;ga
 .ov.open{opacity:1;pointer-events:all;backdrop-filter:blur(8px) saturate(.7);background:rgba(0,0,0,.55)}
 @keyframes popupIn{0%{opacity:0;transform:scale(.93)}100%{opacity:1;transform:scale(1)}}
 @keyframes popupOut{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.93)}}
-.popup{background:var(--surface);border:1px solid var(--border);border-radius:14px;
-  padding:20px 22px;max-width:420px;width:calc(100% - 32px);
+.popup{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:14px;
+  padding:20px 52px 20px 22px;max-width:420px;width:calc(100% - 32px);
   box-shadow:0 24px 80px rgba(0,0,0,.7);
   opacity:0;max-height:82dvh;overflow-y:auto;will-change:transform,opacity}
 .ov.open .popup{animation:popupIn .2s ease forwards}
 .ov.closing .popup{animation:popupOut .18s ease forwards}
-.ph{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px}
-.popup.solo .ph{justify-content:center;align-items:center;margin-bottom:0;gap:8px}
-.popup.solo .pc{position:absolute;top:14px;right:14px}
-.popup.solo .ptxt{flex:unset;text-align:left}
-.popup.solo .pdot{margin-top:0;flex-shrink:0}
+.ph{display:flex;align-items:center;gap:8px;margin-bottom:0}
 .popup{position:relative}
-.pdot{width:12px;height:12px;border-radius:3px;flex-shrink:0;margin-top:3px}
-.ptxt{flex:1}
-.pt{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;line-height:1.2}
-.pc{background:var(--surface2);border:1px solid var(--border);color:var(--soft);
-  width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:0.9rem;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  transition:background .13s;margin-left:auto;
-  -webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.pdot{width:11px;height:11px;border-radius:3px;flex-shrink:0}
+.pt{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;line-height:1.3;flex:1}
+.pc{position:absolute;top:14px;right:14px;background:var(--surface2);border:1px solid var(--border);color:var(--soft);width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
 .pc:hover{background:var(--border);color:var(--text)}
-.pl2{display:flex;flex-direction:column;gap:5px}
-.psub{font-size:0.75rem;color:var(--soft);margin-top:4px;line-height:1.5}
+.pl2{display:flex;flex-direction:column;gap:5px;margin-top:12px}
+.psub{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .pi{background:var(--surface2);border:1px solid var(--border);border-radius:8px;
   padding:8px 12px;font-size:0.82rem;line-height:1.5;color:var(--text);
   display:flex;align-items:flex-start;gap:8px}
@@ -457,11 +448,12 @@ main{flex:1;padding:10px 16px;min-height:0;display:flex;flex-direction:column;ga
 </div>
 <div class="ov" id="ov" onclick="bgClose(event)">
   <div class="popup">
+    <button class="pc" onclick="closePopup()">✕</button>
     <div class="ph">
       <div class="pdot" id="pDot"></div>
-      <div class="ptxt"><span class="pt" id="pT"></span><div class="psub" id="pSub" style="display:none"></div></div>
-      <button class="pc" onclick="closePopup()">✕</button>
+      <span class="pt" id="pT"></span>
     </div>
+    <div class="psub" id="pSub" style="display:none"></div>
     <div class="pl2" id="pL"></div>
   </div>
 </div>
@@ -497,56 +489,56 @@ tb_b1:{t:'Физкултурен',c:'#7ec8e3',i:['Физкултурен сал�
 tb_b2:{t:'Foundation',c:'#7ec8e3',i:['Класни стаи на Foundation програмата']},
 tb_b3:{t:'Съблекалня ж',c:'#7ec8e3',i:['Съблекалня за жени']},
 tb_b4:{t:'Съблекалня 2',c:'#7ec8e3',i:['Съблекалня за мъже']},
-te_o0:{t:'Grade 8 – Project Work – 1 table',c:'#f0a830',i:['Grade 8 – Project Work – 1 table']},
-te_o1:{t:'Nurses – 1 table + mannequin',c:'#f0a830',i:['Nurses – 1 table + mannequin (blood pressure measurement)']},
-te_o2:{t:'Board Games',c:'#f0a830',i:['Board Games']},
-te_o3:{t:'Agar – maybe 1 table',c:'#f0a830',i:['Agar – maybe 1 table (petri dishes, microscopes?)']},
-te_o4:{t:'Microscope – Biocenosis',c:'#f0a830',i:['Microscope – Biocenosis (water, cups)']},
-te_o5:{t:'NGO Game – 1 table',c:'#f0a830',i:['NGO Game – 1 table']},
-te_o6:{t:'DNA from Banana and Strawberry – 2 tables',c:'#f0a830',i:['DNA from Banana and Strawberry – 2 tables','alcohol, bags, test tubes, salt, detergent, sieve, water, cups']},
-te_o7:{t:'Green school – 9 grade',c:'#f0a830',i:['Green school – 9 grade (Саксии и системи)']},
-te_o8:{t:'Chai (Tea) – 1 table',c:'#f0a830',i:['Chai (Tea) – 1 table']},
-te_o9:{t:'Business Strategy for Greening the School (9B) – 1 table',c:'#f0a830',i:['Business Strategy for Greening the School (9B) – 1 table']},
-te_o10:{t:'Physics (Mass & Equipment) – 1 table',c:'#f0a830',i:['Physics (Mass & Equipment) – 1 table']},
-te_o11:{t:'3D Viruses – 1 table with all models',c:'#f0a830',i:['3D Viruses – 1 table with all models']},
-te_o12:{t:'Physics (Mass) – 1 table',c:'#f0a830',i:['Physics (Mass) – 1 table']},
-te_o13:{t:'3D Printer',c:'#f0a830',i:['3D Printer']},
-te_o14:{t:'Diffusion and Osmosis – 1 table',c:'#f0a830',i:['Diffusion and Osmosis – 1 table','flowers, test tubes, paper']},
-te_o15:{t:'Chai (Tea) – 1 table',c:'#f0a830',i:['Chai (Tea) – 1 table']},
-te_o16:{t:'Physics (Mass) – 1 table',c:'#f0a830',i:['Physics (Mass) – 1 table']},
-te_o17:{t:'Organization and Prioritization (9B) – 1 table',c:'#f0a830',i:['Organization and Prioritization (9B) – 1 table']},
-te_o18:{t:'STEM Videos – laptop and/or 2 tables',c:'#f0a830',i:['STEM Videos – laptop and/or 2 tables']},
-te_o19:{t:'Chai (Tea) – 1 table',c:'#f0a830',i:['Chai (Tea) – 1 table']},
-te_o20:{t:'Periodic Table – 1 table',c:'#f0a830',i:['Periodic Table – 1 table']},
-te_o21:{t:'Grade 9 – Breathing – 1 table',c:'#f0a830',i:['Grade 9 – Breathing – 1 table']},
-te_o22:{t:'Cell Vending Machine (9B) – 1 table',c:'#f0a830',i:['Cell Vending Machine (9B) – 1 table']},
-te_o23:{t:'QR Codes for Websites – 1 table',c:'#f0a830',i:['QR Codes for Websites – 1 table']},
-te_o24:{t:'Praktifun',c:'#f0a830',i:['Praktifun']},
-tb_o0:{t:'8 клас – Тютюнопушене и оксиметър',c:'#f0a830',i:['8 клас – Тютюнопушене и оксиметър']},
-tb_o1:{t:'Мед. сестри – 1 маса + манекен',c:'#f0a830',i:['Мед. сестри – 1 маса с манекен (мерител за кръвно)']},
-tb_o2:{t:'Настолни игри',c:'#f0a830',i:['Настолни игри']},
-tb_o3:{t:'ДНК – Ед',c:'#f0a830',i:['ДНК от банан и ягода (едно парче)']},
-tb_o4:{t:'Микроскоп – биоценоза',c:'#f0a830',i:['Микроскоп – биоценоза (вода, чаши)']},
-tb_o5:{t:'НВО игра – 1 маса',c:'#f0a830',i:['НВО игра – 1 маса']},
-tb_o6:{t:'ДНК от банан и ягода – 2 маси',c:'#f0a830',i:['ДНК от банан и ягода – 2 маси','спирт, пликчета, епруветки, сол, веро, статив, вода, чаши']},
-tb_o7:{t:'Зелено училище – 9 клас',c:'#f0a830',i:['Зелено училище – 9 клас (Саксии и системи)']},
-tb_o8:{t:'Сай Хай – 1 маса',c:'#f0a830',i:['Сай Хай – 1 маса']},
-tb_o9:{t:'Бизнес стратегия за озеленяване 9В – 1 маса',c:'#f0a830',i:['Бизнес стратегия за озеленяване 9В – 1 маса']},
-tb_o10:{t:'Физика (Маса и уреди) – 1 маса',c:'#f0a830',i:['Физика (Маса и уреди) – 1 маса']},
-tb_o11:{t:'3Д вируси – 1 маса с всички модели',c:'#f0a830',i:['3Д вируси – 1 маса с всички модели']},
-tb_o12:{t:'Физика (Маса) – 1 маса',c:'#f0a830',i:['Физика (Маса) – 1 маса']},
-tb_o13:{t:'3Д принтер',c:'#f0a830',i:['3Д принтер']},
-tb_o14:{t:'Дифузия и осмоза – 1 маса',c:'#f0a830',i:['Дифузия и осмоза – 1 маса','цветя, епруветки, хартия']},
-tb_o15:{t:'Сай Хай – 1 маса',c:'#f0a830',i:['Сай Хай – 1 маса']},
-tb_o16:{t:'Физика (Маса) – 1 маса',c:'#f0a830',i:['Физика (Маса) – 1 маса']},
-tb_o17:{t:'Организиране и приоритизиране 9Б – 1 маса',c:'#f0a830',i:['Организиране и приоритизиране 9Б – 1 маса']},
-tb_o18:{t:'Видеа СТЕМ – лаптоп 1 или 2, столове',c:'#f0a830',i:['Видеа СТЕМ – лаптоп 1 или 2, столове']},
-tb_o19:{t:'Сай Хай – 1 маса',c:'#f0a830',i:['Сай Хай – 1 маса']},
-tb_o20:{t:'Периодична система – 1 маса',c:'#f0a830',i:['Периодична система – 1 маса']},
-tb_o21:{t:'9 клас – Дишане – 1 маса',c:'#f0a830',i:['9 клас – Дишане – 1 маса']},
-tb_o22:{t:'Клетъчен автомат 9Б – 1 маса',c:'#f0a830',i:['Клетъчен автомат 9Б – 1 маса']},
-tb_o23:{t:'QR кодове за сайтове – 1 маса',c:'#f0a830',i:['QR кодове за сайтове – 1 маса']},
-tb_o24:{t:'Практифън – 1 маса',c:'#f0a830',i:['Практифън – 1 маса']}
+te_o0:{t:'Grade 8 – Project Work – 1 table',c:'#f0a830',name:['Nina','Momchil','Maria Bogdanova'],i:['Grade 8 – Project Work – 1 table']},
+te_o1:{t:'Nurses – 1 table + mannequin',c:'#f0a830',name:['TBD'],i:['Nurses – 1 table + mannequin (blood pressure measurement)']},
+te_o2:{t:'Board Games',c:'#f0a830',name:['Misho','Mark'],i:['Board Games']},
+te_o3:{t:'Agar – maybe 1 table',c:'#f0a830',name:['Veronika 10D','Vasil 10D'],i:['Agar – maybe 1 table (petri dishes, microscopes?)']},
+te_o4:{t:'Microscope – Biocenosis',c:'#f0a830',name:['Veronika 10D','Vasko 10D'],i:['Microscope – Biocenosis (water, cups)']},
+te_o5:{t:'NGO Game – 1 table',c:'#f0a830',name:['Desi','Lychko','Tsveti'],i:['NGO Game – 1 table']},
+te_o6:{t:'DNA from Banana and Strawberry – 2 tables',c:'#f0a830',name:['Sandy 9D','Venelinov 9D','Ilarionov 9D','Oscar 9D','Preslav 9A','Viktor 9A','Kamen 9A'],i:['DNA from Banana and Strawberry – 2 tables','alcohol, bags, test tubes, salt, detergent, sieve, water, cups']},
+te_o7:{t:'Green school – 9 grade',c:'#f0a830',name:['Yavor','Spas','Adi','Eva','Venelin','Mark'],i:['Green school – 9 grade (Саксии и системи)']},
+te_o8:{t:'Chai (Tea) – 1 table',c:'#f0a830',name:['TBD'],i:['Chai (Tea) – 1 table']},
+te_o9:{t:'Business Strategy for Greening the School (9B) – 1 table',c:'#f0a830',name:['Aleksandra','Adi','Bozhidar'],i:['Business Strategy for Greening the School (9B) – 1 table']},
+te_o10:{t:'Physics (Mass & Equipment) – 1 table',c:'#f0a830',name:['Georgi','Maksim','Deyan','Borislav','Vicky'],i:['Physics (Mass & Equipment) – 1 table']},
+te_o11:{t:'3D Viruses – 1 table with all models',c:'#f0a830',name:['Rumi 9E','Andji 9A'],i:['3D Viruses – 1 table with all models']},
+te_o12:{t:'Physics (Mass) – 1 table',c:'#f0a830',name:['TBD'],i:['Physics (Mass) – 1 table']},
+te_o13:{t:'3D Printer',c:'#f0a830',name:['TBD'],i:['3D Printer']},
+te_o14:{t:'Diffusion and Osmosis – 1 table',c:'#f0a830',name:['Dara','Dara 9D'],i:['Diffusion and Osmosis – 1 table','flowers, test tubes, paper']},
+te_o15:{t:'Chai (Tea) – 1 table',c:'#f0a830',name:['TBD'],i:['Chai (Tea) – 1 table']},
+te_o16:{t:'Physics (Mass) – 1 table',c:'#f0a830',name:['TBD'],i:['Physics (Mass) – 1 table']},
+te_o17:{t:'Organization and Prioritization (9B) – 1 table',c:'#f0a830',name:['Adam Bikov','Eva Peneva','Iliya Bakalov','Konstantin Angelov','Kristiyan Stankov'],i:['Organization and Prioritization (9B) – 1 table']},
+te_o18:{t:'STEM Videos – laptop and/or 2 tables',c:'#f0a830',name:['Krisi Dyulgerova','Krista','Radost'],i:['STEM Videos – laptop and/or 2 tables']},
+te_o19:{t:'Chai (Tea) – 1 table',c:'#f0a830',name:['TBD'],i:['Chai (Tea) – 1 table']},
+te_o20:{t:'Periodic Table – 1 table',c:'#f0a830',name:['Denislav Ivanov','Boris Dimov','Maksim Penkov','Mihaela Sotirova'],i:['Periodic Table – 1 table']},
+te_o21:{t:'Grade 9 – Breathing – 1 table',c:'#f0a830',name:['Mia','Georgi'],i:['Grade 9 – Breathing – 1 table']},
+te_o22:{t:'Cell Vending Machine (9B) – 1 table',c:'#f0a830',name:['Boris Angelov','Pavel Yanev','Mila Kamburova','Denis Goge Bakan'],i:['Cell Vending Machine (9B) – 1 table']},
+te_o23:{t:'QR Codes for Websites – 1 table',c:'#f0a830',name:['Vicky Dobreva','Borislav'],i:['QR Codes for Websites – 1 table']},
+te_o24:{t:'Praktifun',c:'#f0a830',name:['Georgi 10B','Maxim 10B'],i:['Praktifun']},
+tb_o0:{t:'8 клас – Тютюнопушене и оксиметър',c:'#f0a830',name:['Нина','Момчил','Мария Богданова'],i:['8 клас – Тютюнопушене и оксиметър']},
+tb_o1:{t:'Мед. сестри – 1 маса + манекен',c:'#f0a830',name:['Предстои'],i:['Мед. сестри – 1 маса с манекен (мерител за кръвно)']},
+tb_o2:{t:'Настолни игри',c:'#f0a830',name:['Мишо','Марк'],i:['Настолни игри']},
+tb_o3:{t:'ДНК – Ед',c:'#f0a830',name:['Вероника 10Д','Васил 10Д'],i:['ДНК от банан и ягода (едно парче)']},
+tb_o4:{t:'Микроскоп – биоценоза',c:'#f0a830',name:['Вероника 10Д','Васко 10Д'],i:['Микроскоп – биоценоза (вода, чаши)']},
+tb_o5:{t:'НВО игра – 1 маса',c:'#f0a830',name:['Деси','Лъчко','Цвети'],i:['НВО игра – 1 маса']},
+tb_o6:{t:'ДНК от банан и ягода – 2 маси',c:'#f0a830',name:['Санди 9Д','Венелинов 9Д','Иларионов 9Д','Оскар 9Д','Преслав 9А','Виктор 9А','Камен 9А'],i:['ДНК от банан и ягода – 2 маси','спирт, пликчета, епруветки, сол, веро, статив, вода, чаши']},
+tb_o7:{t:'Зелено училище – 9 клас',c:'#f0a830',name:['Явор','Спас','Ади','Ева','Венелин','Марк'],i:['Зелено училище – 9 клас (Саксии и системи)']},
+tb_o8:{t:'Сай Хай – 1 маса',c:'#f0a830',name:['Предстои'],i:['Сай Хай – 1 маса']},
+tb_o9:{t:'Бизнес стратегия за озеленяване 9В – 1 маса',c:'#f0a830',name:['Александра','Ади','Божидар'],i:['Бизнес стратегия за озеленяване 9В – 1 маса']},
+tb_o10:{t:'Физика (Маса и уреди) – 1 маса',c:'#f0a830',name:['Георги','Максим','Деян','Борислав','Вики'],i:['Физика (Маса и уреди) – 1 маса']},
+tb_o11:{t:'3Д вируси – 1 маса с всички модели',c:'#f0a830',name:['Руми 9Е','Анджи 9А'],i:['3Д вируси – 1 маса с всички модели']},
+tb_o12:{t:'Физика (Маса) – 1 маса',c:'#f0a830',name:['Предстои'],i:['Физика (Маса) – 1 маса']},
+tb_o13:{t:'3Д принтер',c:'#f0a830',name:['Предстои'],i:['3Д принтер']},
+tb_o14:{t:'Дифузия и осмоза – 1 маса',c:'#f0a830',name:['Дара','Дара 9Д'],i:['Дифузия и осмоза – 1 маса','цветя, епруветки, хартия']},
+tb_o15:{t:'Сай Хай – 1 маса',c:'#f0a830',name:['Предстои'],i:['Сай Хай – 1 маса']},
+tb_o16:{t:'Физика (Маса) – 1 маса',c:'#f0a830',name:['Предстои'],i:['Физика (Маса) – 1 маса']},
+tb_o17:{t:'Организиране и приоритизиране 9Б – 1 маса',c:'#f0a830',name:['Адам Биков','Ева Пенева','Илия Бакалов','Константин Ангелов','Кристиян Станков'],i:['Организиране и приоритизиране 9Б – 1 маса']},
+tb_o18:{t:'Видеа СТЕМ – лаптоп 1 или 2, столове',c:'#f0a830',name:['Криси Дюлгерова','Криста','Радост'],i:['Видеа СТЕМ – лаптоп 1 или 2, столове']},
+tb_o19:{t:'Сай Хай – 1 маса',c:'#f0a830',name:['Предстои'],i:['Сай Хай – 1 маса']},
+tb_o20:{t:'Периодична система – 1 маса',c:'#f0a830',name:['Денислав Иванов','Борис Димов','Максим Пенков','Михаела Сотирова'],i:['Периодична система – 1 маса']},
+tb_o21:{t:'9 клас – Дишане – 1 маса',c:'#f0a830',name:['Миа','Георги'],i:['9 клас – Дишане – 1 маса']},
+tb_o22:{t:'Клетъчен автомат 9Б – 1 маса',c:'#f0a830',name:['Борис Ангелов','Павел Янев','Мила Камбурова','Денис Гьоге Бакан'],i:['Клетъчен автомат 9Б – 1 маса']},
+tb_o23:{t:'QR кодове за сайтове – 1 маса',c:'#f0a830',name:['Вики Добрева','Борислав'],i:['QR кодове за сайтове – 1 маса']},
+tb_o24:{t:'Практифън – 1 маса',c:'#f0a830',name:['Георги 10Б','Максим 10Б'],i:['Практифън – 1 маса']}
 };
 
 function minScale(){return Math.min((vpW()-MARGIN*2)/W,(vpH()-MARGIN*2)/H);}
@@ -853,7 +845,10 @@ function showPopup(id){
   document.getElementById('pDot').style.background = d.c;
   document.getElementById('pT').textContent = d.t;
   const subEl=document.getElementById('pSub');
-  if(d.name&&d.name.length){subEl.innerHTML=d.name.map(n=>`<span style="display:inline-block;margin:1px 4px 1px 0">${n}</span>`).join('·&nbsp;');subEl.style.display='block';}else{subEl.textContent='';subEl.style.display='none';}
+  if(d.name&&d.name.length){
+    subEl.innerHTML=d.name.map(n=>`<span style="background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:0.78rem;color:var(--text);white-space:nowrap">${n}</span>`).join('');
+    subEl.style.display='flex';
+  }else{subEl.innerHTML='';subEl.style.display='none';}
 
   const isBlue = d.c==='#7ec8e3';
   const isTeachers = role==='teachers';
