@@ -633,12 +633,8 @@ document.addEventListener('gesturechange', e=>e.preventDefault(), {passive:false
 document.addEventListener('gestureend', e=>e.preventDefault(), {passive:false});
 
 // Prevent double-tap zoom on UI elements (header, bottombar, popup) but NOT on vp
-;['header','footer'].forEach(tag=>document.querySelectorAll(tag).forEach(el=>{
-  el.addEventListener('touchend', e=>e.preventDefault(), {passive:false});
-}));
-
 // Prevent iOS double-tap zoom on the map viewport too
-vp.addEventListener('touchstart', e=>{ if(e.touches.length===1) e.preventDefault(); }, {passive:false});
+vp.addEventListener('touchstart', e=>{ if(e.touches.length>1) e.preventDefault(); }, {passive:false});
 
 // Double-tap to zoom into map
 let lastTapTime=0, lastTapX=0, lastTapY=0;
