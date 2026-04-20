@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Floor Plan — -1 Floor</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#0f0f11;--surface:#18181c;--surface2:#222228;--border:#2e2e38;
   --text:#f0eff5;--soft:#8a8a9a;--accent:#6c8eff;--visitors:#4ecdc4;--teachers:#ffd166}
-html,body{height:100%;overflow:hidden}
+html,body{height:100%;overflow:hidden;touch-action:none}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);
   display:flex;flex-direction:column;height:100dvh;
   padding-left:env(safe-area-inset-left);
@@ -20,7 +20,7 @@ header{background:var(--surface);border-bottom:1px solid var(--border);
   padding:10px 16px;display:flex;align-items:center;justify-content:space-between;
   flex-wrap:wrap;gap:8px;flex-shrink:0}
 .logo{width:32px;height:32px;border-radius:8px;
-  background:linear-gradient(135deg,var(--accent),#ff7b54);
+  background:linear-gradient(135deg,#00c9a7,#00e5ff);
   display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
 .hl{display:flex;align-items:center;gap:10px}
 h1{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700}
@@ -68,25 +68,24 @@ main{flex:1;padding:10px 16px;min-height:0;display:flex;flex-direction:column;ga
 .zt{display:none}
 
 /* BOTTOM BAR */
-.bottombar{display:flex;align-items:center;justify-content:space-between;gap:10px;
+.bottombar{display:flex;align-items:center;justify-content:space-between;gap:8px;
   padding:8px 13px;padding-bottom:max(8px,env(safe-area-inset-bottom));
-  border-top:1px solid var(--border);background:var(--surface2);flex-shrink:0;
-  flex-wrap:wrap}
-.legend{display:flex;align-items:center;gap:6px;flex-wrap:wrap;flex:1;min-width:0}
+  border-top:1px solid var(--border);background:var(--surface2);flex-shrink:0}
+.legend{display:flex;align-items:center;gap:6px;flex-wrap:wrap;flex:1;min-width:0;overflow:hidden}
 .leg-item{display:flex;align-items:center;gap:5px;
   background:var(--surface);border:1px solid var(--border);border-radius:6px;
   padding:4px 9px;font-size:0.67rem;font-weight:500;color:var(--soft);
   white-space:nowrap;transition:opacity .25s,transform .25s}
 .leg-item.hidden{opacity:0;pointer-events:none;transform:scale(.9)}
 .leg-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
-.mapbtns{display:flex;gap:5px;flex-shrink:0}
-.zb{height:30px;padding:0 11px;border-radius:7px;border:1px solid var(--border);
+.mapbtns{display:flex;gap:4px;flex-shrink:0;align-items:center}
+.zb{height:32px;padding:0 12px;border-radius:7px;border:1px solid var(--border);
   background:var(--surface);color:var(--text);font-size:0.85rem;cursor:pointer;
   display:flex;align-items:center;justify-content:center;gap:5px;
   font-family:'Inter',sans-serif;font-weight:500;
   transition:background .13s,transform .1s,border-color .13s;
   -webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;
-  white-space:nowrap}
+  white-space:nowrap;flex-shrink:0}
 .zb:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 .zb:active{transform:scale(.93)}
 .zb-reset{color:var(--soft);font-size:0.78rem}
@@ -135,7 +134,7 @@ main{flex:1;padding:10px 16px;min-height:0;display:flex;flex-direction:column;ga
   .tag{font-size:.58rem;padding:3px 6px}
   .bottombar{padding:7px 11px;gap:6px}
   .leg-item{font-size:.62rem;padding:3px 8px}
-  .zb{height:28px;padding:0 10px;font-size:.8rem}
+  .zb{height:28px;padding:0 10px;font-size:.78rem}
   .popup{padding:18px 50px 18px 18px;max-width:380px;max-height:78dvh}
   .pt{font-size:.95rem}
   .pi{font-size:.8rem;padding:7px 10px}
@@ -153,10 +152,11 @@ main{flex:1;padding:10px 16px;min-height:0;display:flex;flex-direction:column;ga
   main{padding:6px 8px;gap:5px}
   .topbar{padding:6px 10px}
   .mtitle{font-size:.78rem}
-  .bottombar{padding:5px 10px;gap:5px;flex-wrap:nowrap}
-  .legend{gap:4px;flex-wrap:nowrap;overflow:hidden;mask-image:linear-gradient(to right,#000 80%,transparent 100%)}
-  .leg-item{font-size:.59rem;padding:3px 7px;flex-shrink:0}
-  .zb{height:28px;padding:0 9px;font-size:.75rem}
+  .bottombar{padding:5px 10px;gap:5px}
+  .legend{gap:4px;flex-wrap:nowrap;overflow:hidden;mask-image:linear-gradient(to right,#000 85%,transparent 100%)}
+  .leg-item{font-size:.58rem;padding:3px 7px;flex-shrink:0}
+  .zb{height:30px;width:30px;padding:0;font-size:.9rem;border-radius:8px}
+  .zb-text{display:none}
   .zb-reset span{display:none}
   .popup{padding:15px 44px 15px 15px;max-height:72dvh;border-radius:12px}
   .pt{font-size:.9rem}
@@ -179,10 +179,10 @@ main{flex:1;padding:10px 16px;min-height:0;display:flex;flex-direction:column;ga
   .topbar{padding:5px 9px}
   .mtitle{font-size:.74rem}
   .tag{font-size:.56rem;padding:2px 5px}
-  .bottombar{padding:5px 9px;gap:4px}
-  .leg-item{font-size:.57rem;padding:2px 6px;gap:4px}
+  .bottombar{padding:4px 8px;gap:4px}
+  .leg-item{font-size:.55rem;padding:2px 6px;gap:3px}
   .leg-dot{width:6px;height:6px}
-  .zb{height:26px;padding:0 8px;font-size:.72rem;gap:3px}
+  .zb{height:30px;width:30px;padding:0;font-size:.88rem;border-radius:7px}
   .popup{padding:14px 40px 14px 14px;max-height:70dvh;border-radius:11px;width:calc(100% - 20px)}
   .ph{gap:8px;margin-bottom:12px}
   .pt{font-size:.88rem}
@@ -211,7 +211,7 @@ main{flex:1;padding:10px 16px;min-height:0;display:flex;flex-direction:column;ga
   h1 span{font-size:.52rem}
   .pb{padding:5px 7px;font-size:.64rem}
   .legend{display:none}
-  .bottombar{justify-content:flex-end}
+  .bottombar{justify-content:flex-end;padding:4px 8px}
   .pt{font-size:.84rem}
   .popup{padding:12px 38px 12px 12px;width:calc(100% - 16px)}
   .psub span{font-size:.68rem !important}
@@ -309,8 +309,8 @@ main{flex:1;padding:10px 16px;min-height:0;display:flex;flex-direction:column;ga
 <body>
 <header>
   <div class="hl">
-    <div class="logo">🏛</div>
-    <h1>Building Floor Plan <span>-1 Floor · Interactive Map</span></h1>
+    <div class="logo">🗺️</div>
+    <h1>STEM Day <span>Interactive Map</span></h1>
   </div>
   <div class="ctrl">
     <div class="pg">
@@ -412,12 +412,11 @@ main{flex:1;padding:10px 16px;min-height:0;display:flex;flex-direction:column;ga
     <div class="legend" id="legend">
       <div class="leg-item" id="legItemBlue"><span class="leg-dot" style="background:#7ec8e3"></span><span id="legBlue">—</span></div>
       <div class="leg-item leg-teachers" id="legItemYellow"><span class="leg-dot" style="background:#f0a830"></span><span id="legYellow">—</span></div>
-      <div class="leg-item leg-teachers" id="legItemRed"><span class="leg-dot" style="background:#ff6b6b"></span><span id="legRed">—</span></div>
     </div>
     <div class="mapbtns">
-      <button class="zb" onclick="step(-1)" title="Zoom out">－ Zoom</button>
-      <button class="zb" onclick="step(1)" title="Zoom in">＋ Zoom</button>
-      <button class="zb zb-reset" onclick="resetView()" title="Reset view">⊙ Reset</button>
+      <button class="zb" onclick="step(-1)" title="Zoom out">－<span class="zb-text"> Zoom out</span></button>
+      <button class="zb" onclick="step(1)" title="Zoom in">＋<span class="zb-text"> Zoom in</span></button>
+      <button class="zb zb-reset" onclick="resetView()" title="Reset view">⊙<span class="zb-text"> Reset</span></button>
     </div>
   </div>
 </div>
@@ -795,17 +794,11 @@ function updateLegend(){
   const k=key();
   const n=LEGEND_NAMES[k]||LEGEND_NAMES['visitors-en'];
   document.getElementById('legBlue').textContent = n.blue;
-
   const yEl=document.getElementById('legItemYellow');
-  const rEl=document.getElementById('legItemRed');
   if(n.orange){
     document.getElementById('legYellow').textContent = n.orange;
     yEl.classList.remove('hidden');
   } else { yEl.classList.add('hidden'); }
-  if(n.red){
-    document.getElementById('legRed').textContent = n.red;
-    rEl.classList.remove('hidden');
-  } else { rEl.classList.add('hidden'); }
 }
 
 function applyRole(r){
