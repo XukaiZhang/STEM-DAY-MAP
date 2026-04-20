@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Floor Plan — -1 Floor</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -16,7 +16,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);
   padding-right:env(safe-area-inset-right)}
 
 /* HEADER */
-header{background:var(--surface);border-bottom:1px solid var(--border);
+header{touch-action:manipulation;background:var(--surface);border-bottom:1px solid var(--border);
   padding:10px 16px;display:flex;align-items:center;justify-content:space-between;
   gap:8px;flex-shrink:0;flex-wrap:nowrap}
 .logo{width:32px;height:32px;border-radius:8px;
@@ -68,7 +68,7 @@ main{flex:1;padding:10px 16px;min-height:0;display:flex;flex-direction:column;ga
 .zt{display:none}
 
 /* BOTTOM BAR */
-.bottombar{display:flex;align-items:center;justify-content:space-between;gap:8px;
+.bottombar{touch-action:manipulation;display:flex;align-items:center;justify-content:space-between;gap:8px;
   padding:8px 13px;padding-bottom:max(8px,env(safe-area-inset-bottom));
   border-top:1px solid var(--border);background:var(--surface2);flex-shrink:0}
 .legend{display:flex;align-items:center;gap:6px;flex-wrap:wrap;flex:1;min-width:0;overflow:hidden}
@@ -109,7 +109,7 @@ main{flex:1;padding:10px 16px;min-height:0;display:flex;flex-direction:column;ga
 .popup{position:relative}
 .pdot{width:11px;height:11px;border-radius:3px;flex-shrink:0}
 .pt{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;line-height:1.3;flex:1}
-.pc{position:absolute;top:14px;right:14px;background:var(--surface2);border:1px solid var(--border);color:var(--soft);width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
+.pc{position:absolute;top:14px;right:14px;background:var(--surface2);border:1px solid var(--border);color:var(--soft);width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;touch-action:manipulation}
 .pc:hover{background:var(--border);color:var(--text)}
 .pl2{display:flex;flex-direction:column;gap:5px;margin-top:12px}
 .psub{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
@@ -625,7 +625,19 @@ function hitTestZone(clientX, clientY){
   return null;
 }
 
-// Prevent iOS double-tap zoom on the page
+// Prevent ALL iOS page zoom gestures (pinch + double-tap) on the entire document
+document.addEventListener('touchstart', e=>{ if(e.touches.length>1) e.preventDefault(); }, {passive:false});
+document.addEventListener('touchmove', e=>{ if(e.touches.length>1) e.preventDefault(); }, {passive:false});
+document.addEventListener('gesturestart', e=>e.preventDefault(), {passive:false});
+document.addEventListener('gesturechange', e=>e.preventDefault(), {passive:false});
+document.addEventListener('gestureend', e=>e.preventDefault(), {passive:false});
+
+// Prevent double-tap zoom on UI elements (header, bottombar, popup) but NOT on vp
+;['header','footer'].forEach(tag=>document.querySelectorAll(tag).forEach(el=>{
+  el.addEventListener('touchend', e=>e.preventDefault(), {passive:false});
+}));
+
+// Prevent iOS double-tap zoom on the map viewport too
 vp.addEventListener('touchstart', e=>{ if(e.touches.length===1) e.preventDefault(); }, {passive:false});
 
 // Double-tap to zoom into map
