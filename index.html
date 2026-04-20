@@ -11,7 +11,9 @@
   --text:#f0eff5;--soft:#8a8a9a;--accent:#6c8eff;--visitors:#4ecdc4;--teachers:#ffd166}
 html,body{height:100%;overflow:hidden}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);
-  display:flex;flex-direction:column;height:100dvh}
+  display:flex;flex-direction:column;height:100dvh;
+  padding-left:env(safe-area-inset-left);
+  padding-right:env(safe-area-inset-right)}
 
 /* HEADER */
 header{background:var(--surface);border-bottom:1px solid var(--border);
@@ -60,14 +62,15 @@ main{flex:1;padding:10px 16px;min-height:0;display:flex;flex-direction:column;ga
 /* zw is placed directly inside vp (not cv) so zones cover the full viewport always */
 .zw{position:absolute;inset:0;pointer-events:none}
 .zone{position:absolute;border-radius:5px;cursor:pointer;pointer-events:all;
-  background:var(--hz,rgba(0,0,0,0));transition:background .15s}
+  background:var(--hz,rgba(0,0,0,0));transition:background .15s;touch-action:none}
 .zone:hover{}
 .zone.lit{}
 .zt{display:none}
 
 /* BOTTOM BAR */
 .bottombar{display:flex;align-items:center;justify-content:space-between;gap:10px;
-  padding:8px 13px;border-top:1px solid var(--border);background:var(--surface2);flex-shrink:0;
+  padding:8px 13px;padding-bottom:max(8px,env(safe-area-inset-bottom));
+  border-top:1px solid var(--border);background:var(--surface2);flex-shrink:0;
   flex-wrap:wrap}
 .legend{display:flex;align-items:center;gap:6px;flex-wrap:wrap;flex:1;min-width:0}
 .leg-item{display:flex;align-items:center;gap:5px;
@@ -133,7 +136,7 @@ main{flex:1;padding:10px 16px;min-height:0;display:flex;flex-direction:column;ga
   .bottombar{padding:7px 11px;gap:6px}
   .leg-item{font-size:.62rem;padding:3px 8px}
   .zb{height:28px;padding:0 10px;font-size:.8rem}
-  .popup{padding:18px 18px;max-width:380px;max-height:78dvh}
+  .popup{padding:18px 50px 18px 18px;max-width:380px;max-height:78dvh}
   .pt{font-size:.95rem}
   .pi{font-size:.8rem;padding:7px 10px}
   .pin-box{padding:24px 22px 20px;max-width:320px}
@@ -151,11 +154,11 @@ main{flex:1;padding:10px 16px;min-height:0;display:flex;flex-direction:column;ga
   .topbar{padding:6px 10px}
   .mtitle{font-size:.78rem}
   .bottombar{padding:5px 10px;gap:5px;flex-wrap:nowrap}
-  .legend{gap:4px;flex-wrap:nowrap;overflow:hidden}
+  .legend{gap:4px;flex-wrap:nowrap;overflow:hidden;mask-image:linear-gradient(to right,#000 80%,transparent 100%)}
   .leg-item{font-size:.59rem;padding:3px 7px;flex-shrink:0}
   .zb{height:28px;padding:0 9px;font-size:.75rem}
   .zb-reset span{display:none}
-  .popup{padding:15px 15px;max-height:72dvh;border-radius:12px}
+  .popup{padding:15px 44px 15px 15px;max-height:72dvh;border-radius:12px}
   .pt{font-size:.9rem}
   .pi{font-size:.77rem;padding:6px 9px}
   .pin-box{padding:20px 16px 16px}
@@ -180,7 +183,7 @@ main{flex:1;padding:10px 16px;min-height:0;display:flex;flex-direction:column;ga
   .leg-item{font-size:.57rem;padding:2px 6px;gap:4px}
   .leg-dot{width:6px;height:6px}
   .zb{height:26px;padding:0 8px;font-size:.72rem;gap:3px}
-  .popup{padding:14px 14px;max-height:70dvh;border-radius:11px;width:calc(100% - 20px)}
+  .popup{padding:14px 40px 14px 14px;max-height:70dvh;border-radius:11px;width:calc(100% - 20px)}
   .ph{gap:8px;margin-bottom:12px}
   .pt{font-size:.88rem}
   .pdot{width:10px;height:10px}
@@ -196,6 +199,9 @@ main{flex:1;padding:10px 16px;min-height:0;display:flex;flex-direction:column;ga
   .pin-pad{gap:6px;margin-bottom:12px}
   .pin-key{height:44px;font-size:.95rem;border-radius:9px}
   .pin-cancel{padding:9px;font-size:.75rem}
+  .psub{gap:4px}
+  .psub span{font-size:.72rem !important;padding:2px 8px !important}
+  .pc{top:10px;right:10px;width:24px;height:24px;font-size:.75rem}
 }
 
 /* ── Very small phones (≤380px) ── */
@@ -207,6 +213,8 @@ main{flex:1;padding:10px 16px;min-height:0;display:flex;flex-direction:column;ga
   .legend{display:none}
   .bottombar{justify-content:flex-end}
   .pt{font-size:.84rem}
+  .popup{padding:12px 38px 12px 12px;width:calc(100% - 16px)}
+  .psub span{font-size:.68rem !important}
   .pin-key{height:42px;font-size:.9rem}
   .pin-box{max-width:calc(100% - 24px)}
 }
@@ -219,7 +227,7 @@ main{flex:1;padding:10px 16px;min-height:0;display:flex;flex-direction:column;ga
   .card{border-radius:8px}
   .topbar{padding:4px 10px}
   .bottombar{padding:4px 10px}
-  .popup{max-height:88dvh;padding:12px 14px}
+  .popup{max-height:88dvh;padding:12px 44px 12px 14px}
   .pl2{gap:3px}
   .pi{padding:5px 8px;font-size:.74rem}
   .pin-box{padding:14px 18px 12px;display:grid;grid-template-columns:1fr 1fr;gap:0 16px;max-width:520px;align-items:start}
@@ -490,25 +498,25 @@ tb_b2:{t:'Foundation',c:'#7ec8e3',i:['Класни стаи на Foundation пр
 tb_b3:{t:'Съблекалня ж',c:'#7ec8e3',i:['Съблекалня за жени']},
 tb_b4:{t:'Съблекалня 2',c:'#7ec8e3',i:['Съблекалня за мъже']},
 te_o0:{t:'Grade 8 – Project Work – 1 table',c:'#f0a830',name:['Nina','Momchil','Maria Bogdanova'],i:['Grade 8 – Project Work – 1 table']},
-te_o1:{t:'Nurses – 1 table + mannequin',c:'#f0a830',name:['TBD'],i:['Nurses – 1 table + mannequin (blood pressure measurement)']},
+te_o1:{t:'Nurses – 1 table + mannequin',c:'#f0a830',name:['Undefined'],i:['Nurses – 1 table + mannequin (blood pressure measurement)']},
 te_o2:{t:'Board Games',c:'#f0a830',name:['Misho','Mark'],i:['Board Games']},
 te_o3:{t:'Agar – maybe 1 table',c:'#f0a830',name:['Veronika 10D','Vasil 10D'],i:['Agar – maybe 1 table (petri dishes, microscopes?)']},
 te_o4:{t:'Microscope – Biocenosis',c:'#f0a830',name:['Veronika 10D','Vasko 10D'],i:['Microscope – Biocenosis (water, cups)']},
 te_o5:{t:'NGO Game – 1 table',c:'#f0a830',name:['Desi','Lychko','Tsveti'],i:['NGO Game – 1 table']},
 te_o6:{t:'DNA from Banana and Strawberry – 2 tables',c:'#f0a830',name:['Sandy 9D','Venelinov 9D','Ilarionov 9D','Oscar 9D','Preslav 9A','Viktor 9A','Kamen 9A'],i:['DNA from Banana and Strawberry – 2 tables','alcohol, bags, test tubes, salt, detergent, sieve, water, cups']},
 te_o7:{t:'Green school – 9 grade',c:'#f0a830',name:['Yavor','Spas','Adi','Eva','Venelin','Mark'],i:['Green school – 9 grade (Саксии и системи)']},
-te_o8:{t:'Chai (Tea) – 1 table',c:'#f0a830',name:['TBD'],i:['Chai (Tea) – 1 table']},
+te_o8:{t:'Chai (Tea) – 1 table',c:'#f0a830',name:['Undefined'],i:['Chai (Tea) – 1 table']},
 te_o9:{t:'Business Strategy for Greening the School (9B) – 1 table',c:'#f0a830',name:['Aleksandra','Adi','Bozhidar'],i:['Business Strategy for Greening the School (9B) – 1 table']},
 te_o10:{t:'Physics (Mass & Equipment) – 1 table',c:'#f0a830',name:['Georgi','Maksim','Deyan','Borislav','Vicky'],i:['Physics (Mass & Equipment) – 1 table']},
 te_o11:{t:'3D Viruses – 1 table with all models',c:'#f0a830',name:['Rumi 9E','Andji 9A'],i:['3D Viruses – 1 table with all models']},
-te_o12:{t:'Physics (Mass) – 1 table',c:'#f0a830',name:['TBD'],i:['Physics (Mass) – 1 table']},
-te_o13:{t:'3D Printer',c:'#f0a830',name:['TBD'],i:['3D Printer']},
+te_o12:{t:'Physics (Mass) – 1 table',c:'#f0a830',name:['Undefined'],i:['Physics (Mass) – 1 table']},
+te_o13:{t:'3D Printer',c:'#f0a830',name:['Undefined'],i:['3D Printer']},
 te_o14:{t:'Diffusion and Osmosis – 1 table',c:'#f0a830',name:['Dara','Dara 9D'],i:['Diffusion and Osmosis – 1 table','flowers, test tubes, paper']},
-te_o15:{t:'Chai (Tea) – 1 table',c:'#f0a830',name:['TBD'],i:['Chai (Tea) – 1 table']},
-te_o16:{t:'Physics (Mass) – 1 table',c:'#f0a830',name:['TBD'],i:['Physics (Mass) – 1 table']},
+te_o15:{t:'Chai (Tea) – 1 table',c:'#f0a830',name:['Undefined'],i:['Chai (Tea) – 1 table']},
+te_o16:{t:'Physics (Mass) – 1 table',c:'#f0a830',name:['Undefined'],i:['Physics (Mass) – 1 table']},
 te_o17:{t:'Organization and Prioritization (9B) – 1 table',c:'#f0a830',name:['Adam Bikov','Eva Peneva','Iliya Bakalov','Konstantin Angelov','Kristiyan Stankov'],i:['Organization and Prioritization (9B) – 1 table']},
 te_o18:{t:'STEM Videos – laptop and/or 2 tables',c:'#f0a830',name:['Krisi Dyulgerova','Krista','Radost'],i:['STEM Videos – laptop and/or 2 tables']},
-te_o19:{t:'Chai (Tea) – 1 table',c:'#f0a830',name:['TBD'],i:['Chai (Tea) – 1 table']},
+te_o19:{t:'Chai (Tea) – 1 table',c:'#f0a830',name:['Undefined'],i:['Chai (Tea) – 1 table']},
 te_o20:{t:'Periodic Table – 1 table',c:'#f0a830',name:['Denislav Ivanov','Boris Dimov','Maksim Penkov','Mihaela Sotirova'],i:['Periodic Table – 1 table']},
 te_o21:{t:'Grade 9 – Breathing – 1 table',c:'#f0a830',name:['Mia','Georgi'],i:['Grade 9 – Breathing – 1 table']},
 te_o22:{t:'Cell Vending Machine (9B) – 1 table',c:'#f0a830',name:['Boris Angelov','Pavel Yanev','Mila Kamburova','Denis Goge Bakan'],i:['Cell Vending Machine (9B) – 1 table']},
