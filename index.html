@@ -632,19 +632,6 @@ document.addEventListener('gesturestart', e=>e.preventDefault(), {passive:false}
 document.addEventListener('gesturechange', e=>e.preventDefault(), {passive:false});
 document.addEventListener('gestureend', e=>e.preventDefault(), {passive:false});
 
-// Block double-tap zoom on iOS Safari (iOS 13+ ignores user-scalable=no)
-// Intercept touchend: if two taps within 300ms on non-map element, prevent default
-let _lastTouch=0;
-document.addEventListener('touchend', e=>{
-  // Allow double-tap inside the map viewport (handled by our own JS)
-  if(e.target.closest('#vp')) return;
-  const now=Date.now();
-  if(now-_lastTouch<300){
-    e.preventDefault();
-  }
-  _lastTouch=now;
-}, {passive:false});
-
 // Prevent double-tap zoom on UI elements (header, bottombar, popup) but NOT on vp
 // Prevent iOS double-tap zoom on the map viewport too
 vp.addEventListener('touchstart', e=>{ if(e.touches.length>1) e.preventDefault(); }, {passive:false});
